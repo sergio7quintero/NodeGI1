@@ -30,6 +30,10 @@ header a {
     text-decoration: none;
 }
 
+header a:hover {
+    color: #69c3df;
+}
+
 .portrait {
     width: 250px;
 }
@@ -42,7 +46,15 @@ input {
 button {
     cursor: pointer;
     border: 1px solid #888888;
-    background: #888888;
+    background: #69c3df;
+    color: white;
+    padding: 8px;
+}
+
+select {
+    cursor: pointer;
+    border: 1px solid #888888;
+    background: #69c3df;
     color: white;
     padding: 8px;
 }
@@ -52,4 +64,13 @@ footer {
     border-top: 1px solid #eeeeee;
     margin-top: 16px;
     padding: 16px 0;
+}
+
+footer a {
+    color: #888888;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #69c3df;
 }

@@ -1,5 +1,9 @@
 const fs = require('fs')
 
+const getNotes = function() {
+    return 'Your notes'
+}
+
 const addNote = (title, body) => {
     const notes = loadNotes()
     const duplicateNote = notes.find((note) => note.title === title)
@@ -65,9 +69,25 @@ const loadNotes = () => {
     }
 }
 
+const editNote = function (title, body) {
+    const notes = loadNotes();
+    const note = notes.find((note) => note.title === title)
+
+    if (note) {
+        note.body = body;
+        saveNotes(notes);
+        console.log('Note updated successfully!');
+    } else {
+        console.log('Note not found!');
+    };
+};
+
 module.exports = {
+    getNotes: getNotes,
     addNote: addNote,
     removeNote: removeNote,
     listNotes: listNotes,
-    readNote: readNote
+    readNote: readNote,
+    editNote: editNote
+
 }

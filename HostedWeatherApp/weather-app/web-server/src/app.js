@@ -1,12 +1,11 @@
 const path = require('path')
 const express = require('express')
 const hbs = require('hbs')
-const geocode = require('../utils/geocode')
-const forecast = require('../utils/forecast')
-
-// const forecast = require('../../weather-app/utils/forecast')
+const geocode = require('./utils/geocode')
+const forecast = require('./utils/forecast')
 
 const app = express()
+const port = process.env.PORT || 3000
 
 //Define paths for Express config
 const publicDirectoryPath = path.join(__dirname, '../public')
@@ -23,7 +22,7 @@ hbs.registerPartials(partialsPath)
 //Setup static directory to serve
 app.use(express.static(publicDirectoryPath))
 
-app.get('', (req, red) => {
+app.get('', (req, res) => {
     res.render('index', {
         title: 'Weather App',
         name: 'Sergio Quintero'
@@ -39,7 +38,7 @@ app.get('/about', (rep, res) => {
 
 app.get('/help', (rep, res) => {
     res.render('help', {
-        helpText: 'This is some helpful text.',
+        helpText: 'Help Center',
         title: 'Help',
         name: 'Sergio Quintero'
     })
@@ -57,7 +56,7 @@ app.get('/weather', (req, res) => {
             return res.send({ error })
         }
 
-        forecast(latitude, longitude, (error, forecastData) => {
+        forecast(latitude, longitude, req.query.temperature, (error, forecastData) => {
             if (error) {
                 return res.send({ error })
             }
